@@ -1,0 +1,71 @@
+name: Deploy API
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+##
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Listar archivos
+      run: ls -a
+
+
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+
+    - name: Lista
+      run: ls -R
+          
+    - name: Download and run the Docker base image
+      run: docker run -d --name serving_base tensorflow/serving
+  
+    - name: copy model to the Docker image
+      run: docker cp ${{secrets.MODEL_NAME}} serving_base:/models/${{secrets.MODEL_NAME}}
+        
+    - name: Build the custom Docker image
+      run: docker commit --change "ENV MODEL_NAME ${{secrets.MODEL_NAME}}" serving_base ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{ github.sha }}
+
+    - name: Listar dockers
+      run: docker images
+      
+    - name: Docker Push
+      run: docker push ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
+      
+    - name: Actualizar usuario de Docker en k8
+      run: sed -i 's/{docker_user}/${{secrets.DOCKER_USER}}/g' manifests/k8s.yml
+      
+    - name: Actualizar nombre del modelo en k8
+      run: sed -i 's/{model_name}/${{secrets.MODEL_NAME}}/g' manifests/k8s.yml
+      
+    - name: Reemplazar guiones bajos (_) por guiones (-)
+      run: sed -i 's/_/-/g' manifests/k8s.yml
+      
+    - name: Actualizar SHA en k8
+      run: sed -i 's/{github.sha}/${{github.sha}}/g' manifests/k8s.yml
+      
+    - name: Listar archivos en el directorio
+      run: cat manifests/k8s.yml
+      
+    - uses: okteto/context@2.7.0
+      with:
+        token: ${{secrets.OKTETO_TOKEN }}
+      
+    - name: Deploy and Wait
+      uses: okteto/actions/deploy@v1
+      env:
+        KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
+      with:
+        namespace: ${{secrets.OKTETO_NAMESPACE }}
+        manifest: manifests/k8s.yml
+        tag: ${{ secrets.DOCKER_USERNAME }}/${{secrets.MODEL_NAME}}:${{github.sha}}
+      
