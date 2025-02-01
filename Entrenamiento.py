@@ -31,7 +31,7 @@ dataset = "https://drive.usercontent.google.com/download?id=17kdDJE4GnYSuNDW_7i1
 directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True)
 data = pathlib.Path(directory)
 listaPersonas = os.listdir(data)
-print(type(folders))
+print(type(listaPersonas))
 
 images = []
 labels = []
