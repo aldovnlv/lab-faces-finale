@@ -1,3 +1,6 @@
+# https://github.com/adsoftsito/taller_itsz?tab=readme-ov-file
+# https://github.com/JazaeloG/IABunnies/blob/master/Entrenamiento.py
+# https://github.com/aldovnlv/caras_training/blob/main/flowers-model.py
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras import Sequential
@@ -28,7 +31,7 @@ dataset = "https://drive.usercontent.google.com/download?id=17kdDJE4GnYSuNDW_7i1
 directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True)
 data = pathlib.Path(directory)
 folders = os.listdir(data)
-print(folders)
+print(type(folders))
 
 images = []
 labels = []
@@ -36,7 +39,7 @@ listaPersonas = ['Daniela', 'Jazael']
 
 dataPath = f'{os.getcwd()}/data'
 
-print(listaPersonas)
+print(type(listaPersonas))
 print(dataPath)
 
 
