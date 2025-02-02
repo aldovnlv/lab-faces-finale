@@ -22,8 +22,9 @@ import os
 import random
 import pathlib
 
-
+print("********  folder inicial")
 print(os.getcwd())
+print()
 
 # Set the path of the input folder
 
@@ -31,7 +32,14 @@ dataset = "https://drive.usercontent.google.com/download?id=17kdDJE4GnYSuNDW_7i1
 directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True)
 data = pathlib.Path(directory)
 listaPersonas = os.listdir(data)
+
+print("********  print directory")
+print(directory)
+print()
+
+print("********  tipo listapersonas")
 print(type(listaPersonas))
+print()
 
 images = []
 labels = []
@@ -39,9 +47,18 @@ labels = []
 
 # dataPath = f'{os.getcwd()}/data'
 dataPath = f'{os.getcwd()}/flower_photos'
-print(type(listaPersonas))
+
+print("********  contenido listaPersonas")
+print(listaPersonas)
+print()
+
+print("********  print data")
 print(data)
+print()
+
+print("********  print datapath")
 print(dataPath)
+print()
 
 
 for nombrePersona in listaPersonas:
