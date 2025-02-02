@@ -22,6 +22,7 @@ import os
 import random
 import pathlib
 
+
 print("********  folder inicial")
 print(os.getcwd())
 print()
@@ -33,6 +34,7 @@ directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True)
 data = pathlib.Path(directory)
 listaPersonas = os.listdir(data)
 
+os.system("tree .")
 print("********  print directory")
 print(directory)
 print()
