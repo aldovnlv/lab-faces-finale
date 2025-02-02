@@ -38,8 +38,8 @@ labels = []
 #listaPersonas = ['Daniela', 'Jazael']
 
 dataPath = f'{os.getcwd()}/data'
-
 print(type(listaPersonas))
+print(data)
 print(dataPath)
 
 
