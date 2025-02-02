@@ -38,7 +38,7 @@ labels = []
 #listaPersonas = ['Daniela', 'Jazael']
 
 # dataPath = f'{os.getcwd()}/data'
-dataPath = data
+dataPath = f'{os.getcwd()}/flower_photos'
 print(type(listaPersonas))
 print(data)
 print(dataPath)
