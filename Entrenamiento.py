@@ -37,7 +37,8 @@ images = []
 labels = []
 #listaPersonas = ['Daniela', 'Jazael']
 
-dataPath = f'{os.getcwd()}/data'
+# dataPath = f'{os.getcwd()}/data'
+dataPath = data
 print(type(listaPersonas))
 print(data)
 print(dataPath)
