@@ -18,6 +18,8 @@ jobs:
       run: echo "hello world workflows …"
     - name: install additional modules 
       run: pip install -r requirements.txt
+    - name: install system packages
+      run: apt install -y tree 
     - name: execute model
       run: python Entrenamiento.py
     - name: show dir
