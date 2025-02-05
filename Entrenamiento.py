@@ -35,7 +35,7 @@ print()
 
 os.system("ls -la .")
 print("======================== tree .")
-os.system("tree .")
+# os.system("tree .")
 print("======================== endtree .")
 print("********  print directory")
 print(directory)
@@ -50,7 +50,7 @@ labels = []
 #listaPersonas = ['Daniela', 'Jazael']
 
 # dataPath = f'{os.getcwd()}/data'
-dataPath = f'{os.getcwd()}/flower_photos'
+dataPath = f'{os.getcwd()}/datasets/flower_photos/'
 
 print("********  contenido listaPersonas")
 print(listaPersonas)
