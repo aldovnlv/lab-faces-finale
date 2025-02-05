@@ -50,7 +50,7 @@ labels = []
 #listaPersonas = ['Daniela', 'Jazael']
 
 # dataPath = f'{os.getcwd()}/data'
-dataPath = f'{os.getcwd()}/datasets/flower_photos/'
+dataPath = f'{os.getcwd()}/datasets/flower_photos'
 
 print("********  contenido listaPersonas")
 print(listaPersonas)
