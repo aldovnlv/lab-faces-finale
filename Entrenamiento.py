@@ -67,6 +67,7 @@ print()
 
 for nombrePersona in listaPersonas:
     rostrosPath = os.path.join(dataPath, nombrePersona)
+    print(rostrosPath)
     for filename in os.listdir(rostrosPath):
         img_path = os.path.join(rostrosPath, filename)
         img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
