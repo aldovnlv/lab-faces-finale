@@ -25,7 +25,7 @@ import pathlib
 # Set the path of the input folder
 
 dataset = "https://drive.usercontent.google.com/download?id=17kdDJE4GnYSuNDW_7i1r31n9ReWTnIhd&export=download&authuser=0&confirm=t&uuid=b2c1cebf-4c91-4c42-b6ab-0ba704158cec&at=AIrpjvP4J4FJzIIKkGZLlSB-Qqre%3A1738345923439"
-directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True)
+directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True, cache_dir='/__w/lab-faces-finale/lab-faces-finale/')
 data = pathlib.Path(directory)
 listaPersonas = os.listdir(data)
 
