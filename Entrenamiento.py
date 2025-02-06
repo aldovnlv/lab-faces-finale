@@ -36,6 +36,10 @@ print('listaPersonas')
 listaPersonas.remove("LICENSE.txt")
 print(listaPersonas)
 
+image_names = []
+train_labels = []
+train_images = []
+
 for folder in listaPersonas:
     for file in os.listdir(os.path.join(data,folder)):
         if file.endswith("jpg"):
