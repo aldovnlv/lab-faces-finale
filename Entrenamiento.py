@@ -17,9 +17,7 @@ import numpy as np
 from os import listdir
 from os.path import join
 import cv2
-import pandas
 import os
-import random
 import pathlib
 
 # Set the path of the input folder
@@ -69,7 +67,7 @@ model.add(Dense(len(listaPersonas), activation='softmax'))
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-model.fit(X_train.reshape(-1, 150, 150, 1), y_train, epochs=4, validation_data=(X_test.reshape(-1, 150, 150, 1), y_test))
+model.fit(X_train.reshape(-1, 150, 150, 1), y_train, epochs=100, validation_data=(X_test.reshape(-1, 150, 150, 1), y_test))
 
 # Guarda el modelo
 export_path = 'faces-model/1/'
