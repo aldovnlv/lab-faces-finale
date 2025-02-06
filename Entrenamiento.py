@@ -36,37 +36,6 @@ print('listaPersonas')
 listaPersonas.remove("LICENSE.txt")
 print(listaPersonas)
 
-image_names = []
-train_labels = []
-train_images = []
-
-for folder in listaPersonas:
-    for file in os.listdir(os.path.join(data,folder)):
-        if file.endswith("jpg"):
-            image_names.append(os.path.join(data,folder,file))
-            train_labels.append(folder)
-            img = cv2.imread(os.path.join(data,folder,file))
-            im = cv2.resize(img,size)
-            train_images.append(im)
-        else:
-            continue
-
-print("********  folder inicial")
-print(os.getcwd())
-print()
-
-os.system("ls -la .")
-print("======================== tree .")
-# os.system("tree .")
-print("======================== endtree .")
-print("********  print directory")
-print(directory)
-print()
-
-print("********  tipo listapersonas")
-print(type(listaPersonas))
-print()
-
 images = []
 labels = []
 #listaPersonas = ['Daniela', 'Jazael']
@@ -93,7 +62,8 @@ for nombrePersona in listaPersonas:
     for filename in os.listdir(rostrosPath):
         img_path = os.path.join(rostrosPath, filename)
         img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
-        images.append(img)
+        im = cv2.resize(img,size)
+        images.append(im)
         labels.append(nombrePersona)
 
 images = np.array(images)
