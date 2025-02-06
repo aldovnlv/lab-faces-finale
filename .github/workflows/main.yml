@@ -39,7 +39,7 @@ jobs:
     - name: copy model to the Docker image
       run: |
         pwd
-        ls .
+        ls . -la
         docker cp ${{secrets.MODEL_NAME}} serving_base:/models/${{secrets.MODEL_NAME}}
       
     - name: Build the custom Docker image
