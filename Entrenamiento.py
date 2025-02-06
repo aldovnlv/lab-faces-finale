@@ -25,36 +25,17 @@ import pathlib
 # Set the path of the input folder
 
 dataset = "https://drive.usercontent.google.com/download?id=17kdDJE4GnYSuNDW_7i1r31n9ReWTnIhd&export=download&authuser=0&confirm=t&uuid=b2c1cebf-4c91-4c42-b6ab-0ba704158cec&at=AIrpjvP4J4FJzIIKkGZLlSB-Qqre%3A1738345923439"
-# dataset = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
+
 directory = tf.keras.utils.get_file('flower_photos', origin=dataset, untar=True, cache_dir='.')
 data = pathlib.Path(directory)
-listaPersonas = os.listdir(data)
-# os.remove('/__w/lab-faces-finale/lab-faces-finale/datasets/flower_photos/LICENSE.txt')
 
 size = 150,150
-print('listaPersonas')
-# listaPersonas.remove("LICENSE.txt")
-print(listaPersonas)
 
 images = []
 labels = []
-#listaPersonas = ['Daniela', 'Jazael']
+listaPersonas = os.listdir(data)
 
-# dataPath = f'{os.getcwd()}/data'
 dataPath = f'{os.getcwd()}/datasets/flower_photos'
-
-print("********  contenido listaPersonas")
-print(listaPersonas)
-print()
-
-print("********  print data")
-print(data)
-print()
-
-print("********  print datapath")
-print(dataPath)
-print()
-
 
 for nombrePersona in listaPersonas:
     rostrosPath = os.path.join(dataPath, nombrePersona)
@@ -88,7 +69,7 @@ model.add(Dense(len(listaPersonas), activation='softmax'))
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-model.fit(X_train.reshape(-1, 150, 150, 1), y_train, epochs=10, validation_data=(X_test.reshape(-1, 150, 150, 1), y_test))
+model.fit(X_train.reshape(-1, 150, 150, 1), y_train, epochs=4, validation_data=(X_test.reshape(-1, 150, 150, 1), y_test))
 
 # Guarda el modelo
 export_path = 'faces-model/1/'
