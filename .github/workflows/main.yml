@@ -23,8 +23,7 @@ jobs:
     - name: execute model
       run: python Entrenamiento.py
     - name: show dir
-      run: pwd
-      run: ls -la faces-model
+      run: pwd; ls -la faces-model
 
     - name: docker login
       env:
